@@ -48,7 +48,7 @@ export class Unit {
   target: Entity | null = null;
   targetVisible = false;
   breach: Structure | null = null;
-  thinkT = Math.random() * 0.4;
+  thinkT = ((this.id * 0.618) % 1) * 0.4;
   cooldown = 0.5;
   burstLeft: number;
   coverT = 0;
@@ -92,7 +92,7 @@ export class Structure {
   cells: number[] = [];
   colliders: number[] = [];
   cooldown = 0;
-  thinkT = Math.random() * 0.5;
+  thinkT = ((this.id * 0.618) % 1) * 0.5;
   target: Unit | null = null;
   aimYaw = 0;
   sinceHit = 99;

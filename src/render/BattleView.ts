@@ -242,7 +242,8 @@ export class BattleView {
         .replace('#include <color_fragment>', `#include <color_fragment>
           float tn1 = tn(vWPos.xz * 1.3) * 0.6 + tn(vWPos.xz * 4.7) * 0.4;
           float tn2 = tn(vWPos.xz * 0.11 + 13.0);
-          diffuseColor.rgb *= 0.72 + 0.5 * tn1;`)
+          float tdf = clamp(1.0 - distance(cameraPosition, vWPos) / 170.0, 0.0, 1.0);
+          diffuseColor.rgb *= mix(0.97, 0.72 + 0.5 * tn1, tdf);`)
         .replace('#include <roughnessmap_fragment>', `#include <roughnessmap_fragment>
           float wet = smoothstep(0.52, 0.7, tn2 + (tn1 - 0.5) * 0.25) * step(vWPos.y, 1.2);
           roughnessFactor = mix(roughnessFactor, 0.22, wet);

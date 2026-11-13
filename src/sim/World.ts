@@ -9,7 +9,7 @@ import { CapturePoint } from './CapturePoint';
 import { Director } from './Director';
 import { assignSlots, formationSlots } from './Formation';
 import { NavGrid, type Pt } from './NavGrid';
-import { Structure, Unit, newId, type Entity, type Obstacle, type Projectile } from './entities';
+import { Structure, Unit, newId, resetIds, type Entity, type Obstacle, type Projectile } from './entities';
 import { makeHeightFn, type HeightFn } from './terrain';
 import { updateUnit } from './UnitAI';
 
@@ -101,6 +101,7 @@ export class World {
   }
 
   constructor(public physics: Physics, opts: WorldOpts = {}) {
+    resetIds();
     this.seed = opts.seed ?? (Math.random() * 1e9) | 0;
     this.rng = new Rng(this.seed);
     this.difficulty = DIFFICULTIES.find((d) => d.id === opts.difficulty) ?? DIFFICULTIES[1];

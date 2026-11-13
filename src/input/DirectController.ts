@@ -236,7 +236,7 @@ export class DirectController {
       this.registerHit(r.kind, r.kill, r.head);
       g.audio.play('prifle');
       g.engine.addShake(0.03);
-      if (this.firstPerson) g.view.fx.flash(p.x + f.x, p.y, p.z + f.z, 0xffb060, 26, 0.06);
+      if (this.firstPerson) g.view.fx.flash(p.x + f.x, p.y, p.z + f.z, 0xffb060, 9, 0.06);
     }
     this.ammo--;
     this.recoil = 1;
@@ -426,8 +426,8 @@ export class DirectController {
     this.linkTarget = null;
     this.workTarget = null;
     if (active) {
-      if (u.kind === 'engineer') this.updateEngineer(dt);
       const placing = !!this.buildKind;
+      if (u.kind === 'engineer') this.updateEngineer(dt);
       if (!placing && inp.buttons[0] && this.fireCd <= 0 && this.reloadT <= 0 && this.ammo > 0) {
         const aligned = !this.isVehicle || Math.abs(angDiff(u.aimYaw, this.yaw)) < 0.08;
         if (aligned) {
